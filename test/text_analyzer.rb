@@ -20,23 +20,23 @@ def find_companies(query)
   end
 end
 
-def list_companies(raw_companies)
-  doc = Nokogiri::HTML.parse(raw_companies)
-
-  # docs = doc.search('hr pre')
-  # docs.class
+def list_companies(raw_company_list)
+  doc = Nokogiri::HTML.parse(raw_company_list)
   docs = []
+  href = doc.at_css("a")["href"]
 
   doc.search('pre').each do |element|
     docs.append(element)
   end
+
   docs.delete_at(0)
   docs.each_with_index do |element, index|
-    puts "#{index + 1}. #{element.text.strip}"
+    puts `clear`
+    puts "#{index + 1}. #{element.text.strip} https://www.sec.gov/edgar/#{href}"
     # puts "#{element.attribute}"
   end
 end
 
-raw_companies = find_companies("amazon com")
+raw_companies = find_companies("amazon")
 
-p list_companies(raw_companies)
+list_companies(raw_companies)
