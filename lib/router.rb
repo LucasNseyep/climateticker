@@ -5,8 +5,8 @@ class Router
   end
 
   def run
-    puts "Welcome to the climateticker!"
-    puts "           --           "
+    puts "Welcome to the climateticker!!"
+    puts "              --              "
 
     while @running
       display_tasks
@@ -20,7 +20,7 @@ class Router
 
   def route_action(action)
     case action
-    when 1 then @search.list
+    when 1 then @controller.search_internet_for_company
     when 0 then stop
     else
       puts "Please press 1 or 0"
