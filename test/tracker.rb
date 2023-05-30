@@ -69,7 +69,7 @@ def analyze_report(url, key_word)
   puts `clear`
   report_html.search("span").each do |paragraph|
     if paragraph.text.include?(key_word)
-      puts paragraph.text + "\n\n"
+      puts paragraph.text.strip + "\n\n"
     end
   end
 end

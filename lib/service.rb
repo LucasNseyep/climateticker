@@ -42,7 +42,7 @@ def get_company_name(raw_company)
   if name.nil?
     return "404 - NAME NOT FOUND"
   else
-    return name
+    return name.text.strip
   end
 end
 
@@ -93,9 +93,9 @@ def analyze_report(url, key_word)
   end
 end
 
-companies = get_companies("alphabet inc")
+# companies = get_companies("alphabet inc")
 
-p get_company_name(companies[0])
+# p get_company_name(companies[0])
 
 # reports = get_reports(companies[0])
 

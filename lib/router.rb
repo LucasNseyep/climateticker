@@ -5,6 +5,7 @@ class Router
   end
 
   def run
+    puts `clear`
     puts "Welcome to the climateticker!!"
     puts "              --              "
 

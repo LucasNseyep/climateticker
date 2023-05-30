@@ -5,3 +5,5 @@ controller = Controller.new
 
 # Start the app
 router = Router.new(controller)
+
+router.run
