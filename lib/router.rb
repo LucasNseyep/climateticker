@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Router
   def initialize(controller)
     @controller = controller
@@ -6,8 +8,8 @@ class Router
 
   def run
     puts `clear`
-    puts "Welcome to the climateticker!!"
-    puts "              --              "
+    puts 'Welcome to the climateticker!!'
+    puts '              --              '
 
     while @running
       display_tasks
@@ -24,7 +26,7 @@ class Router
     when 1 then @controller.search_internet_for_company
     when 0 then stop
     else
-      puts "Please press 1 or 0"
+      puts 'Please press 1 or 0'
     end
   end
 
@@ -33,9 +35,9 @@ class Router
   end
 
   def display_tasks
-    puts ""
-    puts "What do you want to do next?"
-    puts "1 - Search for a company"
-    puts "0 - Stop and exit the program"
+    puts ''
+    puts 'What do you want to do next?'
+    puts '1 - Search for a company'
+    puts '0 - Stop and exit the program'
   end
 end

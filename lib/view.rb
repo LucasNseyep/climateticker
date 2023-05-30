@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class View
   def ask_for(item)
     puts `clear`
@@ -6,8 +8,8 @@ class View
   end
 
   def ask_for_index
-    puts "Index?"
-    return gets.chomp.to_i - 1
+    puts 'Index?'
+    gets.chomp.to_i - 1
   end
 
   def display_list(elements)

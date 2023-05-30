@@ -1,5 +1,7 @@
-require_relative "./word_frequency"
-require_relative "./text_analyzer"
+# frozen_string_literal: true
+
+require_relative './word_frequency'
+require_relative './text_analyzer'
 
 # word_frequency.rb interface
 
@@ -10,6 +12,6 @@ require_relative "./text_analyzer"
 
 # text_analyzer.rb interface
 
-text = File.read(File.dirname(__FILE__) + "/source-text.txt")
+text = File.read("#{File.dirname(__FILE__)}/source-text.txt")
 
 pp analyze(text)
