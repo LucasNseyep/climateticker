@@ -62,7 +62,7 @@ def find_company_reports(report_type, company_cik)
 
 end
 
-def read_report(url)
+def read_report
   options = {
     headers: { 'User-Agent': "Lucas Nseyep lucas.nseyep@gmail.com" },
   }

@@ -4,6 +4,9 @@ class View
     gets.chomp
   end
 
-  def display_list(companies)
+  def display_list(elements)
+    elements.each_with_index do |element, index|
+      puts "#{index + 1} #{element}"
+    end
   end
 end
