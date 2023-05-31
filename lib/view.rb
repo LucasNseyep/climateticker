@@ -4,28 +4,17 @@ require "tty-prompt"
 class View
   def initialize
     @prompt = TTY::Prompt.new
+    @answer = TTY::Prompt.new
   end
 
   def ask_for(item)
-    # puts `clear`
-    # puts "What #{item} are you looking for?"
-    # gets.chomp
     @prompt.ask("What #{item} are you looking for?")
   end
 
-  def ask_for_index
-    puts 'Index?'
-    gets.chomp.to_i - 1
-  end
-
-  def display_list(elements)
-    puts `clear`
+  def display_list_and_select(elements)
+    # issue for when you have multiple companies with the same name, which shouldn't be a thing
     elements.delete_at(-1)
-    # elements.each_with_index do |element, index|
-    #   puts "#{index + 1} #{element}"
-    # end
-    p elements.find_index(@prompt.select("Choose", elements)) #we can now return the index immediately
-
+    elements.find_index(@prompt.select("Choose", elements, filter: true))
   end
 
   def looking_for(element)
@@ -33,9 +22,13 @@ class View
   end
 
   def retrieving(element, items)
-    puts "Retrieving #{element} #{items} ..."
+    puts "Retrieving #{element} #{items}..."
+  end
+
+  def display_answers(elements)
+    elements.each do |element|
+      @answer.ok("> " + element)
+      puts "\n"
+    end
   end
 end
-
-# name = prompt.ask("What is your name?", default: ENV["USER"])
-# puts name

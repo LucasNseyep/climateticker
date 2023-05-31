@@ -1,8 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorize (0.8.1)
+    nokogiri (1.15.2-x86_64-linux)
+      racc (~> 1.4)
     pastel (0.8.0)
       tty-color (~> 0.5)
+    racc (1.6.2)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
     tty-prompt (0.23.1)
@@ -19,6 +23,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  colorize
+  nokogiri
   tty-prompt
 
 BUNDLED WITH
