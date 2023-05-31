@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'open-uri'
 require 'httparty'
 require 'nokogiri'
@@ -22,9 +23,9 @@ def get_companies(query)
     raw_companies.each do |company|
       companies.append(company)
     end
-    return companies
+    companies
   elsif response.body.nil?
-    return response.body
+    response.body
   end
 end
 
@@ -85,7 +86,7 @@ def analyze_report(url, key_word)
   report_html.search('span').each do |paragraph|
     answer_paragraphs.append(paragraph.text.strip) if paragraph.text.include?(key_word)
   end
-  return answer_paragraphs
+  answer_paragraphs
 end
 
 # companies = get_companies("alphabet inc")

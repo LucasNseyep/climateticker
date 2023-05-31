@@ -1,5 +1,7 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "tty-prompt"
-gem "nokogiri"
-gem "colorize"
+source 'https://rubygems.org'
+
+gem 'colorize'
+gem 'nokogiri'
+gem 'tty-prompt'
