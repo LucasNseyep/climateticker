@@ -1,20 +1,28 @@
 # frozen_string_literal: true
+require 'colorize'
+require "tty-prompt"
 
 class Router
   def initialize(controller)
     @controller = controller
     @running    = true
+    @display    = TTY::Prompt.new
   end
 
   def run
     puts `clear`
-    puts 'Welcome to the climateticker!!'
-    puts '              --              '
-
+    puts 'Welcome to'
+    puts "
+     ██████ ██      ██ ███    ███  █████  ████████ ███████ ████████ ██  ██████ ██   ██ ███████ ██████
+    ██      ██      ██ ████  ████ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+    ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
+    ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+     ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
+    print '                                                                                        by LucasNseyep'
+    puts ""
+    puts ""
     while @running
-      display_tasks
-      action = gets.chomp.to_i
-      print `clear`
+      action = display_and_select_tasks
       route_action(action)
     end
   end
@@ -23,10 +31,20 @@ class Router
 
   def route_action(action)
     case action
-    when 1 then @controller.search_internet_for_company
-    when 0 then stop
-    else
-      puts 'Please press 1 or 0'
+    when 0 then @controller.search_internet_for_company
+    when 1 then
+      puts `clear`
+      puts 'Welcome to'
+      puts "
+       ██████ ██      ██ ███    ███  █████  ████████ ███████ ████████ ██  ██████ ██   ██ ███████ ██████
+      ██      ██      ██ ████  ████ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+      ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
+      ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+       ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
+      print '                                                                                           by LucasNseyep'
+      puts ""
+      puts ""
+    when 2 then stop
     end
   end
 
@@ -34,10 +52,8 @@ class Router
     @running = false
   end
 
-  def display_tasks
-    puts ''
-    puts 'What do you want to do next?'
-    puts '1 - Search for a company'
-    puts '0 - Stop and exit the program'
+  def display_and_select_tasks
+    options = ['Search for a company', 'Clear previous output', 'Stop and exit the program']
+    task = options.find_index(@display.select("What do you want to do next?", options, cycle: true))
   end
 end

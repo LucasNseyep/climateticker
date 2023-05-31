@@ -1,9 +1,7 @@
 # frozen_string_literal: true
-
 require 'open-uri'
 require 'httparty'
 require 'nokogiri'
-require 'pry'
 
 def get_companies(query)
   options = {
@@ -24,9 +22,9 @@ def get_companies(query)
     raw_companies.each do |company|
       companies.append(company)
     end
-    companies
+    return companies
   elsif response.body.nil?
-    response.body
+    return response.body
   end
 end
 
@@ -57,8 +55,8 @@ def get_reports(raw_company)
     headers: { 'User-Agent': 'Lucas Nseyep lucas.nseyep@gmail.com' }
   }
   response = HTTParty.get(annual_reports, options)
-  reports_html = Nokogiri::HTML.parse(response.body)
 
+  reports_html = Nokogiri::HTML.parse(response.body)
   reports_html.search('tr').each_with_index do |report, _index|
     reports.append(report) if report.text.strip.include?(report_type)
   end
@@ -72,21 +70,22 @@ def extract_report_url(raw_report)
     headers: { 'User-Agent': 'Lucas Nseyep lucas.nseyep@gmail.com' }
   }
   response = HTTParty.get(pre_href, options)
-  report_html = Nokogiri::HTML.parse(response)
+  report_html = Nokogiri::HTML.parse(response.body)
   path = report_html.search('#menu_cat1').at_css('a')['href']
   "https://www.sec.gov/#{path.match(/Archives.+/)}"
 end
 
 def analyze_report(url, key_word)
+  answer_paragraphs = []
   options = {
     headers: { 'User-Agent': 'Lucas Nseyep lucas.nseyep@gmail.com' }
   }
   response = HTTParty.get(url, options)
-  report_html = Nokogiri::HTML.parse(response)
-  puts `clear`
+  report_html = Nokogiri::HTML.parse(response.body)
   report_html.search('span').each do |paragraph|
-    puts "#{paragraph.text}\n\n" if paragraph.text.include?(key_word)
+    answer_paragraphs.append(paragraph.text.strip) if paragraph.text.include?(key_word)
   end
+  return answer_paragraphs
 end
 
 # companies = get_companies("alphabet inc")
