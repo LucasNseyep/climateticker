@@ -18,12 +18,11 @@ class Router
     ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
     ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
      ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
-    print '                                                                                         by LucasNseyep'
+    print '                                                                                        by LucasNseyep'
     puts ""
     puts ""
     while @running
       action = display_and_select_tasks
-      # print `clear`
       route_action(action)
     end
   end
@@ -33,7 +32,19 @@ class Router
   def route_action(action)
     case action
     when 0 then @controller.search_internet_for_company
-    when 1 then stop
+    when 1 then
+      puts `clear`
+      puts 'Welcome to'
+      puts "
+       ██████ ██      ██ ███    ███  █████  ████████ ███████ ████████ ██  ██████ ██   ██ ███████ ██████
+      ██      ██      ██ ████  ████ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+      ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
+      ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
+       ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
+      print '                                                                                           by LucasNseyep'
+      puts ""
+      puts ""
+    when 2 then stop
     end
   end
 
@@ -42,7 +53,7 @@ class Router
   end
 
   def display_and_select_tasks
-    options = ['Search for a company', 'Stop and exit the program']
+    options = ['Search for a company', 'Clear previous output', 'Stop and exit the program']
     task = options.find_index(@display.select("What do you want to do next?", options, cycle: true))
   end
 end
