@@ -7,6 +7,7 @@ require 'nokogiri'
 class Controller
   def initialize
     @view = View.new
+    @service = Service.new
   end
 
   def search_internet_for_company
@@ -14,7 +15,7 @@ class Controller
     company_names = generate_company_selection(companies)
     index = @view.display_list_and_select(company_names)
     @view.retrieving(company_names[index], 'annual reports')
-    reports = get_reports(companies[index])
+    reports = @service.get_reports(companies[index])
     report_dates = generate_report_selection(reports)
     index = @view.display_list_and_select(report_dates)
     paragraphs = search_for_paragraphs(reports, index)
@@ -26,19 +27,19 @@ class Controller
   def search_for_company
     name = @view.ask_for('company')
     @view.looking_for(name)
-    get_companies(name)
+    @service.get_companies(name)
   end
 
   def search_for_paragraphs(reports, index)
-    url = extract_report_url(reports[index])
+    url = @service.extract_report_url(reports[index])
     key_word = @view.ask_for('key word')
-    return analyze_report(url, key_word)
+    return @service.analyze_report(url, key_word)
   end
 
   def generate_company_selection(companies)
     company_names = []
     companies.each do |company|
-      company_names.append(get_company_name(company))
+      company_names.append(@service.get_company_name(company))
     end
     return company_names
   end
