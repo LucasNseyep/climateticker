@@ -67,7 +67,8 @@ class Service
     "https://www.sec.gov/#{path.match(/Archives.+/)}"
   end
 
-  def analyze_report(url, key_word)
+  def analyze_report(url)
+    key_words = ["climate change", "net-zero", "net zero", "sustainability"]
     answer_paragraphs = []
     options = {
       headers: { 'User-Agent': 'Lucas Nseyep lucas.nseyep@gmail.com' }
@@ -75,9 +76,11 @@ class Service
     response = HTTParty.get(url, options)
     report_html = Nokogiri::HTML.parse(response.body)
     report_html.search('span').each do |paragraph|
-      answer_paragraphs.append(paragraph.text.strip) if paragraph.text.include?(key_word)
+      key_words.each do |key_word|
+        answer_paragraphs.append(paragraph.text.strip) if paragraph.text.include?(key_word)
+      end
     end
-    answer_paragraphs
+    answer_paragraphs.uniq
   end
 
   private
@@ -91,6 +94,6 @@ class Service
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }
-    response = HTTParty.post('https://www.sec.gov/cgi-bin/cik_lookup', options)
+    HTTParty.post('https://www.sec.gov/cgi-bin/cik_lookup', options)
   end
 end

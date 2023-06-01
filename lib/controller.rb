@@ -32,8 +32,8 @@ class Controller
 
   def search_for_paragraphs(reports, index)
     url = @service.extract_report_url(reports[index])
-    key_word = @view.ask_for('key word')
-    return @service.analyze_report(url, key_word)
+    # key_word = @view.ask_for('key word')
+    return @service.analyze_report(url)
   end
 
   def generate_company_selection(companies)
