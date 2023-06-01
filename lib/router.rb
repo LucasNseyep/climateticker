@@ -38,7 +38,13 @@ class Router
     ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
      ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██
      ".colorize(:light_green)
-    print "                                                                                   by LucasNseyep\n\n"
+    print "                                                                                   by LucasNseyep\n"
+    disclaimer
+    puts "\n\n"
+  end
+
+  def disclaimer
+    puts "                 [Disclaimer] So far, climateticker can only be used for US companies".colorize(:light_magenta)
   end
 
   def stop

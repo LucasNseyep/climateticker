@@ -2,12 +2,14 @@
 
 require_relative 'view'
 require_relative 'service'
+require_relative '../test/text_analyzer'
 require 'nokogiri'
 
 class Controller
   def initialize
     @view = View.new
     @service = Service.new
+    @text_analyzer = TextAnalyzer.new
   end
 
   def search_internet_for_company
@@ -20,9 +22,21 @@ class Controller
     index = @view.display_list_and_select(report_dates)
     paragraphs = search_for_paragraphs(reports, index)
     @view.display_answers(paragraphs)
+    # core_sentences = search_for_core_sentences(paragraphs)
+    # core_sentences.each do |sentence|
+    #   @view.display_answers(sentence)
+    # end
   end
 
   private
+
+  def search_for_core_sentences(paragraphs)
+    core_sentences = []
+    paragraphs.each do |paragraph|
+      core_sentences.append(@text_analyzer.analyze(paragraph))
+    end
+    core_sentences
+  end
 
   def search_for_company
     name = @view.ask_for('company')
@@ -32,7 +46,6 @@ class Controller
 
   def search_for_paragraphs(reports, index)
     url = @service.extract_report_url(reports[index])
-    # key_word = @view.ask_for('key word')
     return @service.analyze_report(url)
   end
 
