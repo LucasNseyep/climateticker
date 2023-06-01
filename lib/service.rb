@@ -88,13 +88,3 @@ def analyze_report(url, key_word)
   end
   answer_paragraphs
 end
-
-# companies = get_companies("alphabet inc")
-
-# p get_company_name(companies[0])
-
-# reports = get_reports(companies[0])
-
-# url = extract_report_url(reports[0])
-
-# analyze_report(url, "climate change")

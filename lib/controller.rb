@@ -10,26 +10,44 @@ class Controller
   end
 
   def search_internet_for_company
-    company_names = []
-    report_dates = []
+    companies = search_for_company
+    company_names = generate_company_selection(companies)
+    index = @view.display_list_and_select(company_names)
+    @view.retrieving(company_names[index], 'annual reports')
+    reports = get_reports(companies[index])
+    report_dates = generate_report_selection(reports)
+    index = @view.display_list_and_select(report_dates)
+    paragraphs = search_for_paragraphs(reports, index)
+    @view.display_answers(paragraphs)
+  end
+
+  private
+
+  def search_for_company
     name = @view.ask_for('company')
     @view.looking_for(name)
-    companies = get_companies(name)
+    get_companies(name)
+  end
+
+  def search_for_paragraphs(reports, index)
+    url = extract_report_url(reports[index])
+    key_word = @view.ask_for('key word')
+    return analyze_report(url, key_word)
+  end
+
+  def generate_company_selection(companies)
+    company_names = []
     companies.each do |company|
       company_names.append(get_company_name(company))
     end
-    index = @view.display_list_and_select(company_names)
-    # index = @view.ask_for_index.to_i
-    @view.retrieving(company_names[index], 'annual reports')
-    reports = get_reports(companies[index])
+    return company_names
+  end
+
+  def generate_report_selection(reports)
+    report_dates = []
     reports.each do |report|
-      report_dates.append(date = report.search('td')[3].text)
+      report_dates.append(report.search('td')[3].text)
     end
-    index = @view.display_list_and_select(report_dates)
-    # index = @view.ask_for_index.to_i
-    url = extract_report_url(reports[index])
-    key_word = @view.ask_for('key word')
-    paragraphs = analyze_report(url, key_word)
-    @view.display_answers(paragraphs)
+    return report_dates
   end
 end
