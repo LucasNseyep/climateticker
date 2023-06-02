@@ -22,6 +22,9 @@ class Controller
     index = @view.display_list_and_select(report_dates)
     paragraphs = search_for_paragraphs(reports, index)
     @view.display_answers(paragraphs)
+
+    # Text analyzer
+
     # core_sentences = search_for_core_sentences(paragraphs)
     # core_sentences.each do |sentence|
     #   @view.display_answers(sentence)
