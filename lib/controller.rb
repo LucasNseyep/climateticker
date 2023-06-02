@@ -14,26 +14,29 @@ class Controller
 
   def search_internet_for_company
     companies = search_for_company
-    return @view.invalid_name if companies.count == 1
+    return @view.invalid_name if companies.count == 1 || companies.empty?
+
     company_names = generate_company_selection(companies)
     index = @view.display_list_and_select(company_names)
     @view.retrieving(company_names[index], 'annual reports')
     reports = @service.get_reports(companies[index])
     return @view.reports_not_found if reports.empty?
+
     report_dates = generate_report_selection(reports)
     index = @view.display_list_and_select(report_dates)
-    paragraphs = search_for_paragraphs(reports, index)
-    @view.display_answers(paragraphs)
-
-    # Text analyzer
-
-    # core_sentences = search_for_core_sentences(paragraphs)
-    # core_sentences.each do |sentence|
-    #   @view.display_answers(sentence)
-    # end
+    # paragraphs = search_for_paragraphs(reports, index)
+    display_paragraphs(search_for_paragraphs(reports, index))
   end
 
   private
+
+  def display_paragraphs(paragraphs)
+    core_sentences = search_for_core_sentences(paragraphs)
+    core_sentences.each do |sentence|
+      @view.display_answers(sentence)
+    end
+    @view.display_answers(paragraphs) if @view.ask_for_full_paragraphs
+  end
 
   def search_for_core_sentences(paragraphs)
     core_sentences = []

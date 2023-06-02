@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'colorize'
 require 'tty-prompt'
 
@@ -18,11 +19,11 @@ class View
   end
 
   def looking_for(element)
-    puts "Looking for '"+ "#{element}".colorize(:green) + "'..."
+    puts "Looking for '#{element.to_s.colorize(:green)}'..."
   end
 
   def retrieving(element, items)
-    puts "Retrieving " + "#{element}".colorize(:green) +" #{items}..."
+    puts "Retrieving #{element.to_s.colorize(:green)} #{items}..."
   end
 
   def display_answers(elements)
@@ -38,5 +39,9 @@ class View
 
   def reports_not_found
     puts "Sorry, no reports found :/".colorize(:light_yellow)
+  end
+
+  def ask_for_full_paragraphs
+    @display.yes?("Do you want the full paragraphs?")
   end
 end
