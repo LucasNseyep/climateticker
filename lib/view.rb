@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'colorize'
 require 'tty-prompt'
 
 class View
@@ -18,11 +18,11 @@ class View
   end
 
   def looking_for(element)
-    puts "Looking for '#{element}'..."
+    puts "Looking for '"+ "#{element}".colorize(:green) + "'..."
   end
 
   def retrieving(element, items)
-    puts "Retrieving #{element} #{items}..."
+    puts "Retrieving " + "#{element}".colorize(:green) +" #{items}..."
   end
 
   def display_answers(elements)
@@ -30,5 +30,13 @@ class View
       @display.ok("> #{element}")
       puts "\n"
     end
+  end
+
+  def invalid_name
+    puts "Please enter a valid and existing name".colorize(:light_yellow)
+  end
+
+  def reports_not_found
+    puts "Sorry, no reports found :/".colorize(:light_yellow)
   end
 end
