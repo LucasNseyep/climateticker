@@ -31,14 +31,20 @@ class Router
   def welcome
     puts `clear`
     puts 'Welcome to'
-    print "
+    puts "
      ██████ ██      ██ ███    ███  █████  ████████ ███████ ████████ ██  ██████ ██   ██ ███████ ██████
     ██      ██      ██ ████  ████ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
     ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
     ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
-     ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██
-     ".colorize(:light_green)
-    print "                                                                                   by LucasNseyep\n\n"
+     ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
+    print "                                                                                   by LucasNseyep\n"
+    disclaimer
+  end
+
+  def disclaimer
+    print "                 [Disclaimer] So far, climateticker can only be used for US companies
+    ".colorize(:light_magenta)
+    puts "\n"
   end
 
   def stop
