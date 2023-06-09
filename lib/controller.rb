@@ -24,8 +24,8 @@ class Controller
 
     report_dates = generate_report_selection(reports)
     index = @view.display_list_and_select(report_dates)
-    # paragraphs = search_for_paragraphs(reports, index)
-    display_paragraphs(search_for_paragraphs(reports, index))
+    paragraphs = search_for_paragraphs(reports, index)
+    paragraphs == -1 ? @view.reports_not_found : display_paragraphs(paragraphs)
   end
 
   private
@@ -54,7 +54,7 @@ class Controller
 
   def search_for_paragraphs(reports, index)
     url = @service.extract_report_url(reports[index])
-    return @service.analyze_report(url)
+    url == -1 ? url : @service.analyze_report(url)
   end
 
   def generate_company_selection(companies)

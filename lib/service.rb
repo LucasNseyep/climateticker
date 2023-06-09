@@ -63,7 +63,9 @@ class Service
     }
     response = HTTParty.get(pre_href, options)
     report_html = Nokogiri::HTML.parse(response.body)
+    return -1 if report_html.search('#menu_cat1').at_css('a').nil?
     path = report_html.search('#menu_cat1').at_css('a')['href']
+
     "https://www.sec.gov/#{path.match(/Archives.+/)}"
   end
 
