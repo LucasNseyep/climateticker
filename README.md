@@ -65,6 +65,7 @@ The project started with the idea that curious individuals or concerned citizens
 
 However, I found that the users that could make the most of the tool are Business Development Representatives (BDRs) working for carbon accounting platforms researching their clients.
 
+https://github.com/LucasNseyep/climateticker-v1/assets/57943753/fffbbbb8-1c9d-4436-a8d4-b103ce3fc6eb
 
 <!-- ROADMAP -->
 ## Roadmap
