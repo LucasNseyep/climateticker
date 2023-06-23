@@ -37,7 +37,7 @@ class Router
     ██      ██      ██ ██ ████ ██ ███████    ██    █████      ██    ██ ██      █████   █████   ██████
     ██      ██      ██ ██  ██  ██ ██   ██    ██    ██         ██    ██ ██      ██  ██  ██      ██   ██
      ██████ ███████ ██ ██      ██ ██   ██    ██    ███████    ██    ██  ██████ ██   ██ ███████ ██   ██".colorize(:light_green)
-    print "                                                                                   by LucasNseyep\n"
+    print "                                                                                        by LucasNseyep\n"
     disclaimer
   end
 

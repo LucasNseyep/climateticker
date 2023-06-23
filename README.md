@@ -42,9 +42,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Thumbnail showing the landing of the app](resources/thumbnail_1.PNG)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+I've been thinking about sustainability a lot lately. Especially how my own habits are impacting the environment. This had me quit shopping for new clothes in the first 6 months of the year. But it also got me curious about what the companies I go to for products and services are doing. And so I came up with this: `climateticker`. This `v1` is a simple proof of concept. It's a fun little CLI app that allows to know what the largest public companies in the world are doing to reach net-zero.
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -52,7 +52,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/LucasNseyep/climateticker-v1.git
    ```
 2. Install gems
    ```sh
@@ -61,10 +61,10 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The project started with the idea that curious individuals or concerned citizens like myself would want to check what big companies are doing.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+However, I found that the users that could make the most of the tool are Business Development Representatives (BDRs) working for carbon accounting platforms researching their clients.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <!-- ROADMAP -->
 ## Roadmap
